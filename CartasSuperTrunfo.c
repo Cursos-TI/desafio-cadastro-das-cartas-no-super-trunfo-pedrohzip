@@ -1,10 +1,5 @@
 #include <stdio.h>
 
-// Desafio Super Trunfo
-// Tema 1 - Cadastro das Cartas
-// Este código inicial serve como base para o desenvolvimento do sistema de cadastro de cartas de cidades.
-// Siga os comentários para implementar cada parte do desafio.
-
 int main() {
 
 // Definindo as variaveis para a primeira carta:
@@ -43,7 +38,7 @@ float super_poder;
     printf("digite o numero de pontos turisticos da primeira cidade: ");
     scanf("%d", &pontos_turisticos);
 
-//Calculo da densidade e renda per capita da primeira carta:    
+//Calculo da densidade e renda per capita e super poder da primeira carta:    
     densidade = populacao / area;
     per_capita = populacao / pib;
     super_poder = populacao + area + pib + pontos_turisticos + per_capita + (1 / densidade);
@@ -85,7 +80,7 @@ float super_poder1;
     printf("digite o numero de pontos turisticos da segunda cidade: ");
     scanf("%d", &pontos_turisticos1);
 
-//Calculo da densidade e renda per capita da segunda carta:
+//Calculo da densidade e renda per capita e super poder da segunda carta:
     densidade1 = populacao1 / area1;
     per_capita1 = populacao1 / pib1;
     super_poder1 = populacao1 + area1 + pib1 + pontos_turisticos1 + per_capita1 + (1 / densidade1);
