@@ -18,6 +18,7 @@ float pib;
 int pontos_turisticos;
 float densidade;
 float per_capita;
+float super_poder;
 
 // Funçoes para receber os valores das variaveis da primeira carta:
     
@@ -45,6 +46,7 @@ float per_capita;
 //Calculo da densidade e renda per capita da primeira carta:    
     densidade = populacao / area;
     per_capita = populacao / pib;
+    super_poder = populacao + area + pib + pontos_turisticos + per_capita + (1 / densidade);
 
 // Definindo as variaveis da segunda carta:
 
@@ -57,6 +59,8 @@ float pib1;
 int pontos_turisticos1;
 float densidade1;
 float per_capita1;
+float super_poder1;
+
 
 // Funçoes para receber os valores das variaveis da segunda carta:
 
@@ -84,6 +88,7 @@ float per_capita1;
 //Calculo da densidade e renda per capita da segunda carta:
     densidade1 = populacao1 / area1;
     per_capita1 = populacao1 / pib1;
+    super_poder1 = populacao1 + area1 + pib1 + pontos_turisticos1 + per_capita1 + (1 / densidade1);
 
 // Imprimindo as informacoes das cartas de acordo com os valores do usuario:
 
@@ -97,6 +102,7 @@ printf("PIB: %.2f\n", pib);
 printf("Numero de pontos turisticos: %d\n", pontos_turisticos);
 printf("Densidade populacional: %.2f\n", densidade);
 printf("Renda per capita: %.2f\n", per_capita);
+printf("Super Poder: %.2f\n", super_poder);
 
 
 printf("CARTA 2:\n");
@@ -109,6 +115,33 @@ printf("PIB: %.2f\n", pib1);
 printf("Numero de pontos turisticos: %d\n", pontos_turisticos1);
 printf("Densidade populacional: %.2f\n", densidade1);
 printf("Renda per capita: %.2f\n", per_capita1);
+printf("Super Poder: %.2f\n", super_poder1);
 
-    return 0;
+    
+// Comparacao de cartas:
+printf("\n***COMPARACOES:***\n");
+
+// Comparação de densidade populacional (menor vence)
+printf("Densidade populacional (Carta 1 vence): %d\n", densidade < densidade1);
+
+// Comparação de PIB per capita (maior vence)
+printf("PIB per capita (Carta 1 vence): %d\n", per_capita < per_capita1);
+
+// Comparação de população (maior vence)
+printf("Populacao (Carta 1 vence): %d\n", populacao > populacao1);
+
+// Comparação de área (maior vence)
+printf("Area (Carta 1 vence): %d\n", area > area1);
+
+// Comparação de PIB (maior vence)
+printf("PIB (Carta 1 vence): %d\n", pib > pib1);
+
+// Comparação de pontos turísticos (maior vence)
+printf("Pontos turisticos (Carta 1 vence): %d\n", pontos_turisticos > pontos_turisticos1);
+
+// Comparação de Super Poder (maior vence)
+printf("Super Poder (Carta 1 vence): %d\n", super_poder > super_poder1);
+
+
+return 0;
 }
