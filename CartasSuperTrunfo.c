@@ -56,9 +56,9 @@ int main() {
     per_capita1 = pib1 / populacao1;
     super_poder1 = populacao1 + area1 + pib1 + pontos_turisticos1 + per_capita1 + (1 / densidade1);
 
-    // Menu interativo
-    int opcao;
-    printf("\nEscolha o atributo para comparar:\n");
+    // Menu interativo para escolha dos atributos
+    int opcao1, opcao2;
+    printf("\nEscolha o primeiro atributo para comparar:\n");
     printf("1 - População\n");
     printf("2 - Área\n");
     printf("3 - PIB\n");
@@ -66,71 +66,136 @@ int main() {
     printf("5 - Densidade Demográfica\n");
     printf("6 - Renda per capita\n");
     printf("7 - Super Poder\n");
-    printf("Digite sua escolha: ");
-    scanf("%d", &opcao);
+    scanf("%d", &opcao1);
+
+    // Menu dinâmico para o segundo atributo
+    printf("\nEscolha o segundo atributo para comparar (diferente do primeiro):\n");
+    for (int i = 1; i <= 7; i++) {
+        if (i != opcao1) {
+            switch (i) {
+                case 1: printf("1 - População\n"); break;
+                case 2: printf("2 - Área\n"); break;
+                case 3: printf("3 - PIB\n"); break;
+                case 4: printf("4 - Número de pontos turísticos\n"); break;
+                case 5: printf("5 - Densidade Demográfica\n"); break;
+                case 6: printf("6 - Renda per capita\n"); break;
+                case 7: printf("7 - Super Poder\n"); break;
+            }
+        }
+    }
+    scanf("%d", &opcao2);
 
     // Variáveis para armazenar os valores comparados
-    float valor1 = 0, valor2 = 0;
-    char atributo[30];
+    float valor1_attr1 = 0, valor2_attr1 = 0;
+    float valor1_attr2 = 0, valor2_attr2 = 0;
+    char atributo1[30], atributo2[30];
 
-    // Lógica de comparação com base na escolha do usuário
-    switch (opcao) {
+    // Lógica para o primeiro atributo
+    switch (opcao1) {
         case 1:
-            valor1 = populacao;
-            valor2 = populacao1;
-            strcpy(atributo, "População");
+            valor1_attr1 = populacao;
+            valor2_attr1 = populacao1;
+            strcpy(atributo1, "População");
             break;
         case 2:
-            valor1 = area;
-            valor2 = area1;
-            strcpy(atributo, "Área");
+            valor1_attr1 = area;
+            valor2_attr1 = area1;
+            strcpy(atributo1, "Área");
             break;
         case 3:
-            valor1 = pib;
-            valor2 = pib1;
-            strcpy(atributo, "PIB");
+            valor1_attr1 = pib;
+            valor2_attr1 = pib1;
+            strcpy(atributo1, "PIB");
             break;
         case 4:
-            valor1 = pontos_turisticos;
-            valor2 = pontos_turisticos1;
-            strcpy(atributo, "Número de pontos turísticos");
+            valor1_attr1 = pontos_turisticos;
+            valor2_attr1 = pontos_turisticos1;
+            strcpy(atributo1, "Número de pontos turísticos");
             break;
         case 5:
-            valor1 = densidade;
-            valor2 = densidade1;
-            strcpy(atributo, "Densidade Demográfica");
+            valor1_attr1 = densidade;
+            valor2_attr1 = densidade1;
+            strcpy(atributo1, "Densidade Demográfica");
             break;
         case 6:
-            valor1 = per_capita;
-            valor2 = per_capita1;
-            strcpy(atributo, "Renda per capita");
+            valor1_attr1 = per_capita;
+            valor2_attr1 = per_capita1;
+            strcpy(atributo1, "Renda per capita");
             break;
         case 7:
-            valor1 = super_poder;
-            valor2 = super_poder1;
-            strcpy(atributo, "Super Poder");
+            valor1_attr1 = super_poder;
+            valor2_attr1 = super_poder1;
+            strcpy(atributo1, "Super Poder");
             break;
-        default:
-            printf("Opção inválida! Encerrando o programa.\n");
-            return 1;
     }
 
-    // Determinação do vencedor
-    int carta1_vence;
-    if (opcao == 5) { // Regra especial para Densidade Demográfica (menor vence)
-        carta1_vence = valor1 < valor2;
-    } else { // Regra geral (maior vence)
-        carta1_vence = valor1 > valor2;
+    // Lógica para o segundo atributo
+    switch (opcao2) {
+        case 1:
+            valor1_attr2 = populacao;
+            valor2_attr2 = populacao1;
+            strcpy(atributo2, "População");
+            break;
+        case 2:
+            valor1_attr2 = area;
+            valor2_attr2 = area1;
+            strcpy(atributo2, "Área");
+            break;
+        case 3:
+            valor1_attr2 = pib;
+            valor2_attr2 = pib1;
+            strcpy(atributo2, "PIB");
+            break;
+        case 4:
+            valor1_attr2 = pontos_turisticos;
+            valor2_attr2 = pontos_turisticos1;
+            strcpy(atributo2, "Número de pontos turísticos");
+            break;
+        case 5:
+            valor1_attr2 = densidade;
+            valor2_attr2 = densidade1;
+            strcpy(atributo2, "Densidade Demográfica");
+            break;
+        case 6:
+            valor1_attr2 = per_capita;
+            valor2_attr2 = per_capita1;
+            strcpy(atributo2, "Renda per capita");
+            break;
+        case 7:
+            valor1_attr2 = super_poder;
+            valor2_attr2 = super_poder1;
+            strcpy(atributo2, "Super Poder");
+            break;
     }
+
+    // Determinação do vencedor para cada atributo
+    int carta1_vence_attr1 = (opcao1 == 5) ? (valor1_attr1 < valor2_attr1) : (valor1_attr1 > valor2_attr1);
+    int carta1_vence_attr2 = (opcao2 == 5) ? (valor1_attr2 < valor2_attr2) : (valor1_attr2 > valor2_attr2);
+
+    // Soma dos valores dos atributos
+    float soma_carta1 = valor1_attr1 + valor1_attr2;
+    float soma_carta2 = valor2_attr1 + valor2_attr2;
+
+    // Determinação do vencedor geral
+    int carta1_vence_geral = (soma_carta1 > soma_carta2);
 
     // Exibição do resultado
-    printf("\nComparação de cartas (Atributo: %s):\n\n", atributo);
-    printf("Carta 1 - %s (%c): %.2f\n", nome, estado, valor1);
-    printf("Carta 2 - %s (%c): %.2f\n", nome1, estado1, valor2);
+    printf("\nComparação de cartas:\n");
+    printf("Atributo 1: %s\n", atributo1);
+    printf("Carta 1 - %s (%c): %.2f\n", nome, estado, valor1_attr1);
+    printf("Carta 2 - %s (%c): %.2f\n", nome1, estado1, valor2_attr1);
 
-    if (valor1 == valor2) {
+    printf("\nAtributo 2: %s\n", atributo2);
+    printf("Carta 1 - %s (%c): %.2f\n", nome, estado, valor1_attr2);
+    printf("Carta 2 - %s (%c): %.2f\n", nome1, estado1, valor2_attr2);
+
+    printf("\nSoma dos atributos:\n");
+    printf("Carta 1 - %s (%c): %.2f\n", nome, estado, soma_carta1);
+    printf("Carta 2 - %s (%c): %.2f\n", nome1, estado1, soma_carta2);
+
+    if (soma_carta1 == soma_carta2) {
         printf("\nResultado: Empate!\n");
-    } else if (carta1_vence) {
+    } else if (carta1_vence_geral) {
         printf("\nResultado: Carta 1 (%s) venceu!\n", nome);
     } else {
         printf("\nResultado: Carta 2 (%s) venceu!\n", nome1);
